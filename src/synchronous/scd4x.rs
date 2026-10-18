@@ -126,7 +126,9 @@ where
     /// Start low power periodic measurement mode, signal update interval
     /// is approximately 30 seconds.
     pub fn start_low_power_periodic_measurement(&mut self) -> Result<(), Error<E>> {
-        self.write_command(START_LOW_POWER_PERIODIC_MEASUREMENT)
+        self.write_command(START_LOW_POWER_PERIODIC_MEASUREMENT)?;
+        self.measurement_started = true;
+        Ok(())
     }
 
     /// Check if there is a measurement data ready to be read

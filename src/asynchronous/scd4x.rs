@@ -131,7 +131,9 @@ where
     /// is approximately 30 seconds.
     pub async fn start_low_power_periodic_measurement(&mut self) -> Result<(), Error<E>> {
         self.write_command(START_LOW_POWER_PERIODIC_MEASUREMENT)
-            .await
+            .await?;
+        self.measurement_started = true;
+        Ok(())
     }
 
     /// Check if there is a measurement data ready to be read
